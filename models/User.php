@@ -2,9 +2,11 @@
 
 namespace app\models;
 
+use app\models\Enums\StatusLessonEnum;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
@@ -138,9 +140,18 @@ class User extends ActiveRecord implements IdentityInterface
         $this->auth_key = Yii::$app->security->generateRandomString();
     }
 
-    public function getLessons(): \yii\db\ActiveQuery
+    public function getLessons(): ActiveQuery
     {
-        return $this->hasMany(Lesson::class, ['id'=> 'lesson_id'])->viaTable('lessons_user', ['user_id' => 'id']);;
+        return $this->hasMany(Lesson::class, ['id' => 'lesson_id'])->viaTable('lesson_information', ['user_id'=>'id']);
     }
 
+    public function getLessonInformation(): ActiveQuery
+    {
+        return $this->hasMany(LessonInformation::class, ['user_id' => 'id']);
+    }
+
+    public function getCompleteLessonCount()
+    {
+        return $this->getLessonInformation()->andWhere(['status' => StatusLessonEnum::COMPLETED])->count();
+    }
 }

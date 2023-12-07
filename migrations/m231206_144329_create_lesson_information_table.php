@@ -2,17 +2,18 @@
 
 use yii\db\Migration;
 
-class m231206_144329_create_lessons_user_table extends Migration
+class m231206_144329_create_lesson_information_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%lessons_user}}', [
+        $this->createTable('{{%lesson_information}}', [
             'id' => $this->primaryKey(),
+            'lesson_id' => $this->integer(),
             'user_id' => $this->integer(),
-            'lesson_id' => $this->integer()
+            'status' => $this->integer(),
         ]);
     }
 
@@ -21,6 +22,6 @@ class m231206_144329_create_lessons_user_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%lessons_user}}');
+        $this->dropTable('{{%lesson_information}}');
     }
 }

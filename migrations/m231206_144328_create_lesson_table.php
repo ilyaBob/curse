@@ -11,6 +11,7 @@ class m231206_144328_create_lesson_table extends Migration
     {
         $this->createTable('{{%lesson}}', [
             'id' => $this->primaryKey(),
+            'number' => $this->integer(),
             'title' => $this->string(),
             'description' => $this->text(),
             'video' => $this->string(),

@@ -129,6 +129,7 @@ class SiteController extends Controller
 
     public function actionAddAdmin() {
         $model = User::find()->where(['username' => 'admin'])->one();
+
         if (empty($model)) {
             $user = new User();
             $user->username = 'admin';
@@ -136,7 +137,31 @@ class SiteController extends Controller
             $user->setPassword('admin');
             $user->generateAuthKey();
             if ($user->save()) {
-                echo 'good';
+                echo 'good admin';
+            }
+        }
+
+        $model = User::find()->where(['username' => 'user'])->one();
+        if (empty($model)) {
+            $user = new User();
+            $user->username = 'user';
+            $user->email = 'user@user.user';
+            $user->setPassword('user');
+            $user->generateAuthKey();
+            if ($user->save()) {
+                echo 'good user';
+            }
+        }
+
+        $model = User::find()->where(['username' => 'user_1'])->one();
+        if (empty($model)) {
+            $user = new User();
+            $user->username = 'user_1';
+            $user->email = 'user_1@user_1.user_1';
+            $user->setPassword('user_1');
+            $user->generateAuthKey();
+            if ($user->save()) {
+                echo 'good user_1';
             }
         }
     }

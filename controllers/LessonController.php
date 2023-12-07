@@ -2,7 +2,9 @@
 
 namespace app\controllers;
 
+use app\models\Enums\StatusLessonEnum;
 use app\models\Lesson;
+use app\models\LessonInformation;
 use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
@@ -41,10 +43,9 @@ class LessonController extends Controller
     }
 
 
-
     public function actionIndex(): string
     {
-        $lessons = Lesson::find()->all();
+        $lessons = Lesson::find()->with('lessonInformation')->all();
 
         return $this->render('index', compact('lessons'));
     }
@@ -56,15 +57,33 @@ class LessonController extends Controller
         return $this->render('show', compact('lesson'));
     }
 
-    public function actionViewed($id): string
+    public function actionViewed($id): Response
     {
-
         $lesson = Lesson::findOne($id);
+        $lessonStatus = $lesson->lessonsUser->status;
 
-        return $this->render('show', compact('lesson'));
+            $LessonInformation = LessonInformation::findOne(['lesson_id' => $lesson->id, 'user_id' => Yii::$app->user->id]);
+            $LessonInformation->status = StatusLessonEnum::COMPLETED;
+            $LessonInformation->save();
+
+            $nextLesson = Lesson::find()
+                ->where(['>', 'number', $lesson->number])
+                ->orderBy(['number' => SORT_ASC])
+                ->one();
+
+        if ($nextLesson && $lessonStatus != StatusLessonEnum::COMPLETED) {
+            $nextLessonInformation = new LessonInformation([
+                'lesson_id' => $nextLesson->id,
+                'user_id' => Yii::$app->user->id,
+                'status' => StatusLessonEnum::ALLOW,
+            ]);
+
+            $nextLessonInformation->save();
+        }
+
+
+        return $this->redirect('index');
     }
-
-
 
 
 }
