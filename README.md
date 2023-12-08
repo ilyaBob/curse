@@ -21,5 +21,5 @@
    <img src="materials/login.gif">
 6) Просмотр урока
    <img src="materials/another-user.gif">
-7) Настройки сервера
+7) Настройки сервера<br>
    <img src="materials/Settings.png">
