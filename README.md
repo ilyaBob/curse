@@ -18,8 +18,8 @@
    Пароль: user<br><br>
 
 5) Вход в аккаунт
-   <img src="![login.gif](/materials/login.gif)">
+   <img src="materials/login.gif">
 6) Вход в аккаунт
-   <img src="![login.gif](/materials/login.gif)">
+   <img src="materials/login.gif">
 7) Вход в аккаунт
-   <img src="![login.gif](/materials/login.gif)">
+   <img src="materials/login.gif">
