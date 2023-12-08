@@ -2,10 +2,9 @@
 
 namespace app\models;
 
-use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
-/***
+/**
  * @property integer $id
  * @property integer lesson_id
  * @property integer user_id

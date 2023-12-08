@@ -7,7 +7,7 @@ use Yii;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
-/***
+/**
  * @property integer $id
  * @property integer $number
  * @property string $title
@@ -54,7 +54,7 @@ class Lesson extends ActiveRecord
 
     public function isComplete(): bool
     {
-        return $this->lessonInformation->status == StatusLessonEnum::COMPLETED;
+        return $this->lessonsUser->status == StatusLessonEnum::COMPLETED;
     }
 
 }

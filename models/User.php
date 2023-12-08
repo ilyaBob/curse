@@ -25,6 +25,7 @@ use yii\web\IdentityInterface;
  * @property string $password write-only password
  *
  * @property Lesson $lessons
+ * @property LessonInformation $lessonInformation
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -142,7 +143,8 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getLessons(): ActiveQuery
     {
-        return $this->hasMany(Lesson::class, ['id' => 'lesson_id'])->viaTable('lesson_information', ['user_id'=>'id']);
+        return $this->hasMany(Lesson::class, ['id' => 'lesson_id'])->viaTable('lesson_information', ['user_id' => 'id']
+        );
     }
 
     public function getLessonInformation(): ActiveQuery

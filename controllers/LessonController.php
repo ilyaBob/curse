@@ -5,14 +5,11 @@ namespace app\controllers;
 use app\models\Enums\StatusLessonEnum;
 use app\models\Lesson;
 use app\models\LessonInformation;
-use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
 
 class LessonController extends Controller
 {
@@ -24,10 +21,9 @@ class LessonController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'index', 'show','viewed'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -50,9 +46,13 @@ class LessonController extends Controller
         return $this->render('index', compact('lessons'));
     }
 
-    public function actionShow($id): string
+    public function actionShow($id)
     {
         $lesson = Lesson::findOne($id);
+
+       if(!$lesson->lessonsUser){
+           return  $this->redirect('index');
+       }
 
         return $this->render('show', compact('lesson'));
     }
