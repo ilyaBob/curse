@@ -12,7 +12,7 @@
 5) Данные для входа <br>
    ==========================<br>
    Логин: admin<br>
-   Пароль: admin
+   Пароль: admin<br>
    ==========================<br>
    Логин: user<br>
    Пароль: user<br><br>
@@ -22,4 +22,4 @@
 6) Вход в аккаунт
    <img src="materials/login.gif">
 7) Вход в аккаунт
-   <img src="materials/login.gif">
+   <img src="materials/Settings.png">
