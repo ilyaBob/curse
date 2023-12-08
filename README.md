@@ -11,4 +11,4 @@
 4) Файл с готовой базой находится в [materials](materials)
 
 5) Вход в аккаунт
-   <img src="![login.gif](/materials/login.gif)">
+   <img src="materials/login.gif">
