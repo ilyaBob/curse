@@ -19,7 +19,7 @@
 
 5) Вход в аккаунт
    <img src="materials/login.gif">
-6) Вход в аккаунт
-   <img src="materials/login.gif">
-7) Вход в аккаунт
+6) Просмотр урока
+   <img src="materials/another-user.gif">
+7) Настройки сервера
    <img src="materials/Settings.png">
